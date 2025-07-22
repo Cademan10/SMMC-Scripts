@@ -7,6 +7,9 @@ For details on how to use the included scripts, see INSTRUCTIONS.txt.
 
 Contents of the input/ directory
 --------------------------------
+The files containing "quaddist" in the Scripts directory are for performing jackknife analysis of the quadrupole distrbutions using pfsmmca. The extrapolation scripts are used for extrapolating the data for dB = 1/32 and dB = 1/64 to the continuum
+
+MomentCalc.py calculates the moments of the quadrupole distribution, which is used as input for the Landau fitting procedure. Finally, the Scripts directory also contains python scripts for calculating and plotting the thermalization of the angle-averaged observables and the distributions 
 
 The files resampled_sm*_db64.txt contain the delete-k jackknife averages (k=40 corresponding to a single
 independent MC walk in this work) of the moments <Q_20^n> (n=1,2,...,5), the (unprojected) thermal energy, and the (unprojected) heat capacity. The first column is the inverse temperature 1/T and the subsequent columns list the values of the observables in the above order. The sets with a different MC walk omitted are separated by two empty lines.
