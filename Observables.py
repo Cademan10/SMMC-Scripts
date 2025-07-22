@@ -75,64 +75,64 @@ for beta in betas:
 
 
         
-#betas = []
-#Q2 = []
-#Q2_err = []
+betas = []
+Q2 = []
+Q2_err = []
 
-#H = []
-#H_err = []
+H = []
+H_err = []
 
-#Cv = []
-#Cv_err = []
-
-
-
-#dirs = os.listdir(home)
-#dirs = [dir_i for dir_i in dirs if dir_i[0]=="B"]
-
-#for i in range(len(dirs)):
- #       print("#######")
-  #      dir_i = dirs[i]
-  #      b = dir_i[4:]
-  #      print(b)
-  #      os.chdir(dir_i)
-        
-   #     Q2_i,Q2_err_i = Extrapolation(19,b,2)
-   #     H_i,H_err_i = Extrapolation(8,b,2)
-
-   #     Cv_i,Cv_err_i = Extrapolation(68,b,2)
-
-   #     beta = getBeta(b)
+Cv = []
+Cv_err = []
 
 
-   #     betas.append(beta)
-   #     Q2.append(Q2_i)
-   #     Q2_err.append(Q2_err_i)
 
-   #     H.append(H_i)
-   #     H_err.append(H_err_i)
+dirs = os.listdir(home)
+dirs = [dir_i for dir_i in dirs if dir_i[0]=="B"]
 
-   #     Cv.append(Cv_i)
-   #     Cv_err.append(Cv_err_i)
+for i in range(len(dirs)):
+     print("#######")
+     dir_i = dirs[i]
+     b = dir_i[4:]
+     print(b)
+     os.chdir(dir_i)
+    
+     Q2_i,Q2_err_i = Extrapolation(19,b,2)
+     H_i,H_err_i = Extrapolation(8,b,2)
 
-   #     os.chdir(home)
+     Cv_i,Cv_err_i = Extrapolation(68,b,2)
 
-#print(len(betas),len(H),len(Cv),len(Q2))
-#print("#####")
-#print(len(H_err),len(Cv_err),len(Q2_err))
+     beta = getBeta(b)
 
-#sort_inds = np.array(betas).argsort()
-#betas = np.array(betas)[sort_inds]
-#H = np.array(H)[sort_inds]
-#H_err = np.array(H_err)[sort_inds]
-#Cv = np.array(Cv)[sort_inds]
-#Cv_err = np.array(Cv_err)[sort_inds]
-#Q2 = np.array(Q2)[sort_inds]
-#Q2_err = np.array(Q2_err)[sort_inds]
 
-#data = np.stack([betas,H,H_err,Cv,Cv_err,Q2,Q2_err],axis=1)
-#np.savetxt("Data/Fe56_data.dat",data, delimiter="\t", header="Beta\tH\tH_err\tCv\tCv_err\tQ**2\tQ**2_err")
+     betas.append(beta)
+     Q2.append(Q2_i)
+     Q2_err.append(Q2_err_i)
 
-#levelDensity_data = np.stack([betas,H,H_err,Cv,Cv_err],axis=1)
+     H.append(H_i)
+     H_err.append(H_err_i)
 
-#np.savetxt("Data/Fe56_leveldensity_data.dat", levelDensity_data, delimiter="\t", header="Beta\tH\tH_err\tCv\tCv_err")
+     Cv.append(Cv_i)
+     Cv_err.append(Cv_err_i)
+
+     os.chdir(home)
+
+print(len(betas),len(H),len(Cv),len(Q2))
+print("#####")
+print(len(H_err),len(Cv_err),len(Q2_err))
+
+sort_inds = np.array(betas).argsort()
+betas = np.array(betas)[sort_inds]
+H = np.array(H)[sort_inds]
+H_err = np.array(H_err)[sort_inds]
+Cv = np.array(Cv)[sort_inds]
+Cv_err = np.array(Cv_err)[sort_inds]
+Q2 = np.array(Q2)[sort_inds]
+Q2_err = np.array(Q2_err)[sort_inds]
+
+data = np.stack([betas,H,H_err,Cv,Cv_err,Q2,Q2_err],axis=1)
+np.savetxt("Data/Fe56_data.dat",data, delimiter="\t", header="Beta\tH\tH_err\tCv\tCv_err\tQ**2\tQ**2_err")
+
+levelDensity_data = np.stack([betas,H,H_err,Cv,Cv_err],axis=1)
+
+np.savetxt("Data/Fe56_leveldensity_data.dat", levelDensity_data, delimiter="\t", header="Beta\tH\tH_err\tCv\tCv_err")
