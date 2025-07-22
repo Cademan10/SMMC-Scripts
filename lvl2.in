@@ -1,0 +1,15 @@
+# Input file for lvl2.py
+
+# Ne20
+np = 2       # Number of valence protons
+nn = 2       # Number of valence neutrons
+nsp = 12      # Number of proton single-particle states
+nsn = 12      # Number of neutron single-particle states
+E0 = -28.53768 # SMMC g.s. energy
+#zxz = 0.02556
+
+# List of energies to interpolate to
+energies = []
+
+# Data file
+filename = "../Data/Ne20_leveldensity_data.dat"

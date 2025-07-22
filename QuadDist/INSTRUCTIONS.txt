@@ -1,0 +1,59 @@
+Instructions for running the included scripts
+=============================================
+
+The included scripts, written in Julia and Python, start from the delete-k
+averages of the moments <Q_20^n>, the thermal energy and the heat capacity. The
+Julia scripts determine the parameters a, b, c of the Landau-like expansion
+from the moments, whereas the Python scripts compute the deformation-dependent
+observables and combine the delete-k results at the end using the jackknife
+formula.
+
+The Julia scripts have been tested with Julia version 0.6.0 on macOS High
+Sierra, and the Python scripts with Python 3.6, NumPy 1.13, and Scipy 1.0. If
+Julia package dependencies (NLsolve, QuadGK) have not been installed, the Julia
+scripts will halt with an error message; see the Julia manual for instructions
+on how to install the dependencies.
+
+
+1. Determining the parameters in Landau-like expansion
+——————————————————————————————————————————————————————
+
+To determine the parameters a, b, c in the Landau-like expansion for Sm148,
+carry out (within the directory scripts/) the command
+
+    julia qlvl_abcfit.jl ../input/resampled_sm148_db64.txt 148 > abc148.txt
+
+where the first parameter to the Julia script is the input file name and the
+second one is the mass number of the nucleus. Running this script may typically
+take several tens of minutes.
+
+Note that the output file of this step does the computation for each delete-k
+block of samples separately, and to get the final results for the a, b, and c,
+you need to complete step 2 below. In other words, the output of this first
+script is not meant to be used directly, but as an input file for the main
+script.
+
+Optionally, you can compute the marginal distribution from the Landau-like
+expansion. An example command for this is
+
+    julia q20dist.jl abc.txt 2000 100 148 > marginal_distribution.txt
+
+where "abc.txt" stands for a text file containing lines with four values:
+the inverse temperature, a, b, and c, in that order. The value 2000 stands for
+the maximum value of q_20 to be computed; 100 stands for the number of points
+on the positive q_20 axis to be computed (the points are picked symmetrically
+so that there are, in this example, 201 points in total); and 148 is the mass
+number of the nucleus in question.
+
+
+2. Computing observables from the Landau-like expansion
+-------------------------------------------------------
+
+The main computations (in this example, for Sm148) are done using the command
+
+    python3 qlvl_main.py qlvl_main_sm148.in
+
+The options for this script are commented inside the files qlvl_main_sm*.in.
+Depending on the chosen options, running this script might take from a few
+seconds to multiple hours. The most time-consuming computations are those of
+the integrated state densities.
